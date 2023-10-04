@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main(){
+	int n;
+	printf("Nhap vao so phan tu ban muon co trong mang: ");
+	scanf("%d",&n);
+	int i,j,a[n];
+	for(i = 0; i < n; i++){
+		printf("Nhap vao vi tri thu %d cua mang: ",i);
+		scanf("%d",&a[i]);
+	}
+	int hv ;
+	for( i = 0; i<n; i++){
+		for(j = i+1; j<n;j++){
+			if(a[i]>a[j]){
+				hv = a[j];
+				a[j] = a[i];
+				a[i] = hv;
+			}
+		}
+	}
+	printf("Sap xep theo thu tu tang dan:\n");
+	for(i = 0; i<n; i++){
+		printf("Vi tri thu %d cua mang la: %d\n",i, a[i]);
+	}
+	return 0;
+}
