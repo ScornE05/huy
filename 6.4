@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <math.h>
+int main(){
+    int n, m;
+    printf("Nhap vao so hang: ");
+    scanf("%d", &n);
+    printf("Nhap vao so cot: ");
+    scanf("%d", &m);
+    int i, j;
+    int a[n][m];
+
+    for (i = 0; i < n; i++){
+        for (j = 0; j < m; j++){
+            printf("Nhap vao mang vi tri a[%d][%d] = ", i, j);
+            scanf("%d", &a[i][j]);
+        }
+    }
+    
+    printf("Cac gia tri sau khi tinh binh phuong la:\n");
+    for (i = 0; i < n; i++){
+        for (j = 0; j < m; j++){
+            printf("%d \t",a[i][j]*a[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
