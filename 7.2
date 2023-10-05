@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main(){
+	char mk[100],tendangnhap[100];
+	printf ("Dang ki tai khoan.\n");
+	printf("Nhap username: ");
+	gets(tendangnhap);
+	printf("Moi ban nhap mat khau: ");
+	gets(mk);
+	system("cls");
+	printf("DANG NHAP.\n");
+	char tentaikhoan[100];
+	printf("Nhap ten tai khoan: ");
+	gets(tentaikhoan);
+	printf("Nhap mat khau ban da dang ki: ");
+	char mk1[100];
+	gets(mk1);
+	if ( strcmp(mk1, mk ) == 0 && strcmp(tentaikhoan, tendangnhap) == 0){
+		printf("Dang nhap thanh cong");
+	} else {
+		printf ("Ban nhap sai tai khoan hoac mat khau.");
+	}
+	return 0;
+}
