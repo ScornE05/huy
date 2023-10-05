@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char chuoi[5][100]; 
+	int i,j; 
+    for ( i = 0; i < 5; i++) {
+        printf("Nhap chuoi %d: ", i + 1);
+        scanf("%s", chuoi[i]);
+    }
+    for ( i = 0; i < 5 - 1; i++) {
+        for ( j = i + 1; j < 5; j++) {
+            if (strcmp(chuoi[i], chuoi[j]) > 0) {
+                char hv[100];
+                strcpy(hv, chuoi[i]);
+                strcpy(chuoi[i], chuoi[j]);
+                strcpy(chuoi[j], hv);
+            }
+        }
+    }
+    printf("Chuoi da duoc sap xep theo thu tu bang chu cai:\n");
+    for ( i = 0; i < 5; i++) {
+        printf("%s\n", chuoi[i]);
+    }
+
+    return 0;
+}
