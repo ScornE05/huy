@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <math.h>
+int main() {
+    float a, b, c, d, d1, d2, d3;
+    printf("Nhap vao lan luot 3 so a b c: ");
+    scanf("%f %f %f", &a, &b, &c);
+    	if( a == 0 ){
+			printf("Nghiem cua phuong trinh la: %.2f", -c/b);
+		}
+		 else{
+        d = b * b - 4 * a * c;
+        if (d < 0)
+            printf("Phuong trinh vo nghiem!");
+        else {
+            if (d > 0) {
+                d1 = (-b + sqrt(d)) / (2 * a);
+                d2 = (-b - sqrt(d)) / (2 * a);
+                printf("Phuong trinh co 2 nghiem phan biet lan luot la: %.2f %.2f\n", d1, d2);
+            } else {
+                d3 = -b / (2 * a);
+                printf("Phuong trinh co 1 nghiem duy nhat: %.2f", d3);
+            }
+        }
+    }
+    return 0;
+}
