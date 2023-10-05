@@ -1,0 +1,90 @@
+#include <stdio.h>
+
+int timMax(int a, int b, int c){
+    int max = a;
+    if (b > max) {
+        max = b;
+    }
+    if (c > max) {
+        max = c;
+    }
+    return max;
+}
+int namNhuan(int a){
+    int kiemTra = 0;
+    if (a % 4 == 0) {
+        kiemTra += 1;
+        if (a % 100 == 0) {
+            kiemTra -= 1;
+            if (a % 400 == 0) {
+                kiemTra += 1;
+            }
+        }
+    }
+    if (kiemTra > 0) {
+        printf("Nam %d la nam nhuan.\n", a);
+    } else {
+        printf("Nam %d khong phai nam nhuan.\n", a);
+    }
+    return kiemTra;
+}
+int hoanvi(int *a, int *b){
+    int c;
+    c = *a;
+    *a = *b;
+    *b = c;
+    return c;
+}
+int main(){
+	int luaChon;
+	do{
+		printf("-------------------------------------------------------------\n");
+		printf("|1.Chuc nang : Tim so lon nhat                              |\n");
+		printf("|2.Chuc nang : Kiem tra nam nhuan                           |\n");
+		printf("|3.Chuc nang : Hoan vi                                      |\n");
+		printf("|4.Chuc nang : Thoat                                        |\n");
+		printf("-------------------------------------------------------------\n");
+		printf("Moi ban chon chuc nang: ");
+		scanf("%d", &luaChon);
+		switch (luaChon){
+			case 1:
+					printf("Ban da chon chuc nang 1: Tim so lon nhat.\n");
+				    int soThunhat, soThuhai, soThuba;
+				    printf("Nhap vao so thu nhat: ");
+				    scanf("%d", &soThunhat);
+				    printf("Nhap vao so thu hai: ");
+				    scanf("%d", &soThuhai);    
+				    printf("Nhap vao so thu ba: ");
+				    scanf("%d", &soThuba);
+				    int max = timMax(soThunhat, soThuhai, soThuba);
+				    printf("So lon nhat trong 3 so la: %d\n", max);
+			break;
+			case 2:	
+					printf("Ban da chon chuc nang 2: Kiem tra nam nhuan.\n");
+					int nam;
+				    printf("Nhap vao nam ban can kiem tra: ");
+				    scanf("%d", &nam);
+				    namNhuan(nam);
+
+			break;
+			case 3:
+					printf("Ban da chon chuc nang 3: Hoan vi 2 so.\n");
+				    int soThuNhat, soThuHai;
+				    printf("Nhap vao so thu nhat: ");
+				    scanf("%d", &soThuNhat);
+				    printf("Nhap vao so thu hai: ");
+				    scanf("%d", &soThuHai); 
+				    hoanvi(&soThuNhat, &soThuHai);   
+				    printf("So thu nhat sau khi hoan vi la: %d\n", soThuNhat);
+				    printf("So thu hai sau khi hoan vi la: %d\n", soThuHai); 
+			break;
+			case 4:
+				printf("Ban da thoat khoi chuong trinh.\n");
+				printf("Press any key to exit.");
+				break;
+			default:
+				printf("Vui long chon lai chuc nang.\n");
+	}	
+	}while(luaChon != 4);
+	return 0;
+}
