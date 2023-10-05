@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<math.h>
+int main(){
+	int a;
+	do {
+		printf("-------------------------------------------------------------------------\n");
+		printf("| Chon chuc nang!                                                       |\n");
+		printf("| Chuc nang 1: Trung binh tong cac so chia het cho 2 tu 2 so max va min |\n");
+		printf("| Chuc nang 2: Tim so nguyen to                                         |\n");
+		printf("| Chuc nang 3: Tim so chinh phuong                                      |\n");
+		printf("| Chuc nang 4: Thoat                                                    |\n");
+		printf("-------------------------------------------------------------------------\n");
+		scanf("%d", &a);
+		
+		switch (a) {
+			case 1:
+				printf("Trung binh tong cac so chia het cho 2 tu 2 so max va min! \n");
+				int max, min, trungBinh, bienDem, i;
+				trungBinh = 0;
+				bienDem = 0;
+				printf("Nhap vao 2 so min max lan luot: ");
+				do {
+					scanf("%d %d", &min, &max);
+					if (max < min) {
+						printf("Vui long nhap lai 2 so sao cho max >= min.\n");
+					}
+				} while (max < min);
+			
+				for (i = min; i <= max; i++) {
+					if (i % 2 == 0) {
+						trungBinh += i;
+						bienDem++;
+					}
+				}
+				if (bienDem > 0) {
+					printf("Trung binh cac so chia het cho 2 tu min den max la: %d\n", trungBinh / bienDem);
+				} else {
+					printf("Khong co so chia het cho 2 trong khoang min den max.\n");
+				}
+				break;
+			case 2:
+				printf("Kiem tra so nguyen to! \n");
+				int soNguyenTo, dem = 0, j;
+				do {
+					printf("Nhap vao 1 so lon hon 0: ");
+					scanf("%d", &soNguyenTo);
+					if (soNguyenTo <= 0) {
+						printf("Vui long nhap so lon hon 0.\n");
+					}
+				} while (soNguyenTo <= 0);
+				if (soNguyenTo == 1) printf("%d khong phai so nguyen to \n", soNguyenTo);
+				if (soNguyenTo == 2) printf("%d la so nguyen to \n", soNguyenTo);
+				if (soNguyenTo > 3) {
+					for (j = 2; j <= sqrt(soNguyenTo); j++) {
+						if (soNguyenTo % j == 0)
+							dem += 1;
+					}
+					if (dem == 0) {
+						printf("%d La so nguyen to \n", soNguyenTo);
+					} else {
+						printf("%d khong phai so nguyen to \n", soNguyenTo);
+					}
+				}
+				break;
+			case 3:
+				printf("Nhap vao 1 so: ");
+				int soChinhPhuong;
+				scanf("%d", &soChinhPhuong);
+				int laChinhPhuong, t;
+				t = sqrt(soChinhPhuong);
+				if (t * t == soChinhPhuong) {
+					printf("%d la so chinh phuong.\n", soChinhPhuong);
+				} else {
+					printf("%d khong phai so chinh phuong.\n", soChinhPhuong);
+				}
+				break;
+			case 4:
+				break;
+			default:
+				printf("Chuc nang khong hop le. Vui long chon lai.\n");
+		}
+	} while (a != 4);
+	return 0;                       
+}
