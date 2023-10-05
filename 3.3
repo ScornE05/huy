@@ -1,0 +1,28 @@
+#include<stdio.h>
+#define b1 1.678
+#define b2 1.734
+#define b3 2.014
+#define b4 2.536
+#define b5 2.834
+#define b6 2.927
+int main(){
+	printf("Nhap vao so dien da dung trong thang nay: ");
+	float a;
+	scanf("%f", &a);
+	 if( 0 <= a && a <= 50  ){
+		printf("So tien can phai dong la: %.3f", b1 * a );
+	} else if ( 51 <= a && a <= 100 ){
+		printf("So tien can phai dong la: %.3f", b1*50 +  b2 * (a-50));
+	} else if ( 101 <= a && a <= 200 ){
+		printf("So tien can phai dong la: %.3f",b1*50 + 50*b2 + b3 * (a-100));
+	} else if ( 201 <= a && a <= 300 ){
+		printf("So tien can phai dong la: %.3f",b1*50 + 50*b2 + b3*100 + b4 * (a-200));
+	} else if ( 301 <= a && a <= 400 ){
+		printf("So tien can phai dong la: %.3f",b1*50 + 50*b2 + b3*100 + b4 * 100 + b5*(a-300));
+	} else if (a >= 401 ){
+		printf("So tien can phai dong la: %.3f", b1*50 + 50*b2 + b3*100 + b4 * 100+ b5*100 + b6 * (a-400));
+	} else {
+		printf("Ban nhap so dien ko hop le!");
+	}
+	return 0;                       
+}
