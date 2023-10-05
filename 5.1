@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int timMax(int a, int b, int c){
+    int max = a;
+    if (b > max) {
+        max = b;
+    }
+    if (c > max) {
+        max = c;
+    }
+    return max;
+}
+int main(){
+    int soThunhat, soThuhai, soThuba;
+    printf("Nhap vao so thu nhat: ");
+    scanf("%d", &soThunhat);
+    printf("Nhap vao so thu hai: ");
+    scanf("%d", &soThuhai);    
+    printf("Nhap vao so thu ba: ");
+    scanf("%d", &soThuba);
+    int max = timMax(soThunhat, soThuhai, soThuba);
+    printf("So lon nhat trong 3 so la: %d", max);
+    return 0;
+}
