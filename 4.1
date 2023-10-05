@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main(){
+	int max, min, trungBinh = 0, bienDem = 0, i;
+	printf("Nhap vao 2 so min max lan luot: ");
+	do{
+		scanf("%d %d", &min, &max);
+		if (max < min) {
+			printf("Vui long nhap lai 2 so sao cho max >= min.\n");
+		}
+	} while (max < min);
+
+	for( i = min; i <= max; i++){
+		if(i % 2 == 0){
+			trungBinh += i;
+			bienDem++;
+		}
+	}
+	if (bienDem > 0) {
+		printf("Trung binh cac so chia het cho 2 tu min den max la: %d\n", trungBinh / bienDem);
+	} else {
+		printf("Khong co so chia het cho 2 trong khoang min den max.\n");
+	}
+	return 0;                       
+}
