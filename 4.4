@@ -1,0 +1,14 @@
+#include<stdio.h>
+#include<math.h>
+int main(){
+    printf("Nhap vao 1 so: ");
+    int soChinhphuong,t;
+    scanf("%d", &soChinhphuong);
+    t = sqrt(soChinhphuong);
+    if(t*t == soChinhphuong){
+    	printf("%d la so chinh phuong.", soChinhphuong);
+	}else {
+		printf("%d khong phai la so chinh phuong.", soChinhphuong);
+	}
+    return 0;                       
+}
