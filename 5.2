@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int namNhuan(int a){
+    int kiemTra = 0;
+    if (a % 4 == 0) {
+        kiemTra += 1;
+        if (a % 100 == 0) {
+            kiemTra -= 1;
+            if (a % 400 == 0) {
+                kiemTra += 1;
+            }
+        }
+    }
+    if (kiemTra > 0) {
+        printf("Nam %d la nam nhuan.\n", a);
+    } else {
+        printf("Nam %d khong phai nam nhuan.\n", a);
+    }
+    return kiemTra;
+}
+int main(){
+    int nam;
+    printf("Nhap vao nam ban can kiem tra: ");
+    scanf("%d", &nam);
+    namNhuan(nam);
+
+    return 0;
+}
