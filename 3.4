@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<math.h>
+#define b1 1.678
+#define b2 1.734
+#define b3 2.014
+#define b4 2.536
+#define b5 2.834
+#define b6 2.927
+int main(){
+	printf("Chon bieu thuc ban dang tinh toan: \n");
+	printf("a. Phuong trinh bac nhat. \nb. Phuong trinh bac 2. \nc. Tinh tien dien. \nd. Kiem tra hoc luc sinh vien. \n");
+	char i;
+	scanf("%s",&i);
+	switch (i){
+		case 'a':
+				printf("Nhap vao lan luot 2 gia tri a va b: ");
+				float a,b;
+				scanf("%f %f", &a, &b);
+				if( a == 0 ){
+					if( b == 0 ){
+						printf("Phuong trinh co vo so nghiem.\n");
+					} else{
+						printf("Phuong trinh vo nghiem.\n");
+					}
+				} else{
+					printf("Phuong trinh co nghiem x = %.2f\n", -b/a);
+				}                                               
+	break;
+		case 'b':
+			float c, d, e, f, d1, d2, d3;
+    		printf("Nhap vao lan luot 3 so a b c: ");
+    		scanf("%f %f %f", &c, &d, &e);
+    			if( c == 0 ){
+						printf("Nghiem cua phuong trinh la: %.2f\n", -e/d);
+			}
+		 		else{
+        			f = d * d - 4 * e * c;
+        			if (f < 0)
+            		printf("Phuong trinh vo nghiem!\n");
+        		else {
+           			 if (f > 0) {
+               			 d1 = (-d + sqrt(f)) / (2 * c);
+                		 d2 = (-d - sqrt(f)) / (2 * c);
+                			printf("Phuong trinh co 2 nghiem phan biet lan luot la: %.2f %.2f\n", d1, d2);
+            		} else {
+                			d3 = -d / (2 * c);
+                			printf("Phuong trinh co 1 nghiem duy nhat: %.2f\n", d3);
+            		}	
+        		}
+    		}
+    break;
+    	case 'c':
+					printf("Nhap vao so dien da dung trong thang nay: ");
+					float soDien;
+					scanf("%f", &soDien);
+					 if( 0 <= soDien && soDien <= 50  ){
+						printf("So tien can phai dong la: %.3f", b1 * soDien );
+					} else if ( 51 <= soDien && soDien <= 100 ){
+						printf("So tien can phai dong la: %.3f", b1*50 +  b2 * (soDien-50));
+					} else if ( 101 <= soDien && soDien <= 200 ){
+						printf("So tien can phai dong la: %.3f",b1*50 + 50*b2 + b3 * (soDien-100));
+					} else if ( 201 <= soDien && soDien <= 300 ){
+						printf("So tien can phai dong la: %.3f",b1*50 + 50*b2 + b3*100 + b4 * (soDien-200));
+					} else if ( 301 <= soDien && soDien <= 400 ){
+						printf("So tien can phai dong la: %.3f",b1*50 + 50*b2 + b3*100 + b4 * 100 + b5*(soDien-300));
+					} else if (soDien >= 401 ){
+						printf("So tien can phai dong la: %.3f", b1*50 + 50*b2 + b3*100 + b4 * 100+ b5*100 + b6 * (soDien-400));
+					} else {
+						printf("Ban nhap so dien ko hop le!");
+					}
+	break;
+		case 'd':
+				printf("Nhap vao diem cua sinh vien: ");
+				float p; 
+				scanf("%f", &p);
+				if( 0 <= p && p <= 10  ){
+				if(p < 3.5 ){
+					printf("Sinh vien dat hoc luc kem!\n ");
+			} else if( 3.5 <= p && p< 5 ){
+				printf("Sinh vien dat hoc luc yeu! \n");
+			} else if (5<= p && p < 6.5){
+				printf("Sinh vien dat hoc luc trung binh! \n");
+			} else if (6.5<= p && p < 8 ){
+				printf("Sinh vien dat hoc luc kha! \n");
+			} else if (8<= p && p < 9){
+				printf("Sinh vien dat hoc luc gioi!\n");
+			} else if ( p >= 9){
+				printf("Sinh vien dat hoc luc xuat sac!\n");
+			}
+		} else {
+				printf("Diem nhap vao khong hop le!\n");
+		}	
+	break;
+	default: 
+		printf(" Khong co chuc nang nay!\n");	
+	}
+	return 0;                       
+}
