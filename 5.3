@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int hoanvi(int *a, int *b){
+    int c;
+    c = *a;
+    *a = *b;
+    *b = c;
+    return c;
+}
+
+int main(){
+    int soThunhat, soThuhai;
+    printf("Nhap vao so thu nhat: ");
+    scanf("%d", &soThunhat);
+    printf("Nhap vao so thu hai: ");
+    scanf("%d", &soThuhai); 
+    hoanvi(&soThunhat, &soThuhai);   
+    printf("So thu nhat sau khi hoan vi la: %d\n", soThunhat);
+    printf("So thu hai sau khi hoan vi la: %d\n", soThuhai); 
+    return 0;
+}
