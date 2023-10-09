@@ -1,0 +1,131 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int tien = 0;
+
+// Hàm lắc xúc xắc và trả về tổng
+int lacXucXac() {
+    int xucXac1 = rand() % 6 + 1;
+    int xucXac2 = rand() % 6 + 1;
+    int tong = xucXac1 + xucXac2;
+    printf("Xúc xắc 1: %d\n", xucXac1);
+    printf("Xúc xắc 2: %d\n", xucXac2);
+    printf("Tổng: %d\n", tong);
+    return tong;
+}
+
+// Hàm chơi trò chơi lắc xúc xắc
+void choiLacXucXac() {
+    int tienCuoc;
+    int tongXucXac;
+
+    printf("Nhập số tiền bạn muốn cược: $");
+    scanf("%d", &tienCuoc);
+
+    if (tienCuoc <= 0 || tienCuoc > tien) {
+        printf("Số tiền cược không hợp lệ.\n");
+        return;
+    }
+
+    tien -= tienCuoc;
+
+    tongXucXac = lacXucXac();
+
+    if (tongXucXac == 7 || tongXucXac == 11) {
+        printf("Bạn thắng! Số tiền thắng được: $%d\n", tienCuoc * 2);
+        tien += tienCuoc * 2;
+    } else if (tongXucXac == 2 || tongXucXac == 3 || tongXucXac == 12) {
+        printf("Bạn thua! Số tiền cược đã mất.\n");
+    } else {
+        printf("Hòa! Số tiền cược đã được hoàn trả.\n");
+        tien += tienCuoc;
+    }
+
+    printf("Số tiền hiện tại là: $%d\n", tien);
+}
+
+// Hàm nạp tiền và lưu số tiền vào tệp
+void napTien() {
+    int soTienNap;
+    printf("Nhập số tiền bạn muốn nạp: $");
+    scanf("%d", &soTienNap);
+    if (soTienNap > 0) {
+        tien += soTienNap;
+        printf("Nạp thành công! Số tiền hiện tại là: $%d\n", tien);
+
+        // Ghi số tiền vào tệp
+        FILE *tep;
+        tep = fopen("tien.txt", "w");
+        if (tep != NULL) {
+            fprintf(tep, "%d", tien);
+            fclose(tep);
+        } else {
+            printf("Lỗi khi ghi vào tệp.\n");
+        }
+    } else {
+        printf("Số tiền nạp không hợp lệ.\n");
+    }
+}
+
+// Hàm kiểm tra số tiền và đọc từ tệp
+void kiemTraSoTien() {
+    FILE *tep;
+    tep = fopen("tien.txt", "r");
+    if (tep != NULL) {
+        fscanf(tep, "%d", &tien);
+        fclose(tep);
+    } else {
+        printf("Lỗi khi đọc từ tệp.\n");
+    }
+
+    printf("Số tiền của bạn hiện tại là: $%d\n", tien);
+}
+
+int main() {
+    int luaChon;
+    srand(time(NULL));
+
+    do {
+        printf("----------------MENU---------------------\n");
+        printf("------Vui lòng chọn chức năng------------\n");
+        printf("1. Nạp tiền. \n");
+        printf("2. Kiểm tra số tiền. \n");
+        printf("3. Lắc xúc xắc. \n");
+        printf("4. Thoát. \n");
+        printf("-----------------------------------------\n");
+        scanf("%d", &luaChon);
+
+        switch (luaChon) {
+            case 1:
+                printf("Bạn chọn chức năng 1: Nạp tiền. \n");
+                napTien();
+                break;
+            case 2:
+                printf("Bạn chọn chức năng 2: Kiểm tra số tiền. \n");
+                kiemTraSoTien();
+                break;
+            case 3:
+                printf("Bạn chọn chức năng 3: Lắc xúc xắc. \n");
+                choiLacXucXac();
+                break;
+            case 4:
+                printf("Bạn đã thoát game, vui lòng ấn phím bất kì để tiếp tục.!\n");
+                break;
+            default:
+                printf("Chức năng không hợp lệ, vui lòng chọn lại!\n");
+        }
+    } while (luaChon != 4);
+
+    // Lưu số tiền vào tệp trước khi thoát
+    FILE *tep;
+    tep = fopen("tien.txt", "w");
+    if (tep != NULL) {
+        fprintf(tep, "%d", tien);
+        fclose(tep);
+    } else {
+        printf("Lỗi khi ghi vào tệp.\n");
+    }
+
+    return 0;
+}
