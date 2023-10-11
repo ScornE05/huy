@@ -1,0 +1,165 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int thongTin(){
+	char tenNc[50];
+	int namSinh;
+	float canNang;
+	char queQuan[50];
+	int tuoi;
+	printf("Nhap vao ho va ten cua ban ngoi canh: ");
+	getchar();
+	gets(tenNc);
+	do{
+	printf("Nhap vao tuoi cua ban ngoi canh: ");
+	scanf("%d",&tuoi);
+	if ( tuoi < 0 ){
+		printf("Nhap lai tuoi lon hon 0.\n");
+	}
+} while ( tuoi < 0);
+	do{
+	printf("Nhap vao nam sinh cua ban ngoi canh: ");
+	scanf("%d",&namSinh);
+	if ( namSinh < 0 ){
+		printf("Nhap lai nam sinh lon hon 0.\n");
+	}
+} while ( namSinh < 0);
+	do{
+	printf("Nhap vao can nang cua ban ngoi canh: ");
+	scanf("%f",&canNang);
+	if ( canNang < 0 ){
+		printf("Nhap lai can nang lon hon 0.\n");
+	}
+} while ( canNang < 0);
+	printf("Nhap vao que quan cua ban ngoi canh: ");
+	getchar();
+	gets(queQuan);
+	system ("cls");
+	printf ("Thong tin cua ban ngoi canh ban vua nhap.\n");
+	printf("Ten cua ban ngoi canh la: ");
+	puts(tenNc);
+	printf("Tuoi cua ban ngoi canh: %d\n", tuoi);
+	printf("Nam sinh cua ban ngoi canh: %d\n",namSinh);
+	printf("Que cua ban ngoi canh la: ");
+	puts(queQuan);
+	printf("Can nang cua ban ngoi canh la: %.2f\n",canNang);
+	return namSinh;
+}
+
+int chiaHet(int a){
+	float tong = 0, dem = 0, tongC = 0, demC = 0;
+	int i; 
+	for ( i = 1; i <= a; i++){
+		if ( i % 2 != 0 && i % 3 == 0 ){
+			dem ++;
+			tong += i;
+		}
+		if ( i % 2 == 0 && i % 3 == 0){
+			demC++;
+			tongC += i;
+		}
+	}
+	if ( dem > 0){
+		float trungBinh = tong / dem;
+		printf("Trung binh ca so le chia het cho 3 la: %.2f\n",trungBinh);
+	} else {
+		printf("Khong co so le nao chia het cho 3.\n");
+	}
+		if ( demC > 0){
+		float trungBinhC = tongC / demC;
+		printf("Trung binh tong cac so chan chia het cho 3 la: %.2f\n",trungBinhC);
+		} else {
+			printf("Khong co so chan nao chia het cho 3.\n");
+		}
+	return a;
+}
+
+
+float nhapGao(int a) {
+    int i;
+    float giaGao[a];
+    int dem = 0;
+    printf("---------Thong tin cac gia gao------------\n");
+    for (i = 0; i < a; i++) {
+        printf("Nhap vao gia gao cua loai thu %d: ", i + 1);
+        scanf("%f", &giaGao[i]);
+        if (giaGao[i] > 50000){
+        	dem ++;
+		}
+    }
+    printf("---------Xuat thong tin cac gia gao-------\n");
+    printf("So luong loai gao la: %d", a);
+    float max = giaGao[0];
+    for ( i = 1; i < a; i++) {
+        if (giaGao[i] > max) {
+            max = giaGao[i];
+        }
+    }
+    printf("Gia gao cao nhat la: %.2f\n", max);
+    printf("Co %d loai gao gia lon hon 50k.\n", dem);
+    	int  j;
+    for ( i = 0; i < a - 1; i++) {
+        for (j = i + 1; j < a; j++) {
+            if (giaGao[i] < giaGao[j]) {
+                float temp = giaGao[i];
+                giaGao[i] = giaGao[j];
+            	giaGao[j] = temp;
+            }
+        }
+    }
+        printf("Danh sach gao gia giam dan.\n");
+                for ( i = 0; i < a; i++) {
+                    printf("%.2f \n", giaGao[i]);
+                }
+    return giaGao[0]; 
+}
+
+int main(){
+	int luaChon;
+	do{
+		printf("------------------MENU-----------------------\n");
+    printf("1. Thong tin ban ngoi canh.\n");
+		printf("2. Tinh tong cac so chan chia het cho 3 tu 1 den N.\n");
+		printf("3. Thong tin gia gao.\n");
+		printf("4. Thoat.\n");
+		printf("---------------------------------------------\n");
+		printf("Moi ban chon chuc nang ( 1 -> 4 ): ");
+		scanf("%d",&luaChon);
+		switch (luaChon){
+			case 1:
+				printf("Ban chon chuc nang 1.\n");
+				thongTin();
+				break;
+			case 2:
+				printf("Ban chon chuc nang 2.\n");
+				int a;
+				do{
+				printf("Nhap vao 1 so nguyen duong: ");
+				scanf("%d", &a);
+				if ( a < 0 ){
+					printf("Ban vua nhap so am, nhap lai so duong a > 0.\n");
+				}
+			} while ( a < 0 );
+				chiaHet(a);
+				break;
+			case 3:
+				printf("Ban chon chuc nang 3.\n");
+				int b;
+				do{
+					printf("Nhap vao so luong gao: ");
+					scanf("%d",&b);
+					if ( b < 0){
+						printf("Nhap vao so luong gao lon hon 0.\n");
+					}
+				} while ( b < 0);
+				nhapGao(b);
+				break;
+			case 4:
+				printf("Ban chon chuc nang thoat chuong trinh, an phim bat ki de tiep tuc.\n");
+				break;
+			default:
+				printf("Moi ban nhap lai chuc nang ( 1 - 4).\n");
+		}
+	} while ( luaChon != 4);
+	return 0;
+}
