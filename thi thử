@@ -1,0 +1,159 @@
+#include <stdio.h>
+
+void nguoiYeu(){
+    printf("Nhập vào tên của người yêu: ");
+    char tenNy[50];
+    getchar();
+    gets(tenNy);
+    printf("Nhập vào chiều cao của người yêu: ");
+    float chieuCao;
+    scanf("%f", &chieuCao);
+    printf("Nhập vào cân nặng của người yêu (kg): ");
+    float canNang;
+    scanf("%f", &canNang);
+    printf("Nhập vào quê quán của người yêu: ");
+    char queQuan[50];
+    getchar();
+    gets(queQuan);
+    printf("Nhập vào sở thích của người yêu: ");
+    char soThich[50];
+    gets(soThich);
+    printf("\nThông tin người yêu của bạn: \n");
+    printf("- Họ và tên: %s\n", tenNy);
+    printf("- Chiều cao: %.2fcm\n", chieuCao);
+    printf("- Cân nặng: %.2fkg\n", canNang);
+    printf("- Quê quán: %s\n", queQuan);
+    printf("- Sở thích của %s là:  %s ",tenNy,soThich);
+}
+
+
+int luyThua ( int a){
+    int i;
+    int tich = 1;
+    for ( i = 1; i <= a; i++){
+        tich *= i;
+    }
+    printf("Tích các số từ 1 đến N là: %d\n", tich);
+    return a;
+}
+
+int luongNhanvien(float luong[], int a){
+    int i,j;
+    int dem = 0; 
+    int namMuoi = 0;
+    for( i = 0; i < a; i++){
+        printf("Nhập vào tiền lương của nhân viên thứ %d: ",i+1);
+        scanf("%f", &luong[i]);
+        if(luong[i] > 30000000){
+            dem++;
+        }
+        if ( luong [i] == 50000000){
+            namMuoi++;
+        }
+    }
+    float max = luong[0];
+    for ( i = 0; i < a; i++){
+        if(luong[i] > max){
+            max = luong[i];
+        }
+    }
+    
+    printf("Có %d nhân viên.\n", a);
+    printf("Có %d nhân viên có lương lớn hơn 30 triệu.\n", dem);
+    printf("Mức lương cao nhất là: %f\n", max);
+    printf("Tại vị trí thứ: ");
+    for ( i = 0; i < a; i++){
+        if(luong[i] == max){
+            printf("%d   ", i+1);
+        }
+        
+    }    
+    
+    printf("\n");
+    if ( namMuoi > 0 ){
+        printf("Có nhân viên có lương 50 triệu.\n");
+    } else {
+        printf("Không có nhân viên nào có lương 50 triệu.\n");
+    }
+    
+    for ( i = 0; i < a - 1; i++) {
+      for ( j = i + 1; j < a; j++) {
+            if (luong[i] > luong[j]) {
+                float temp = luong[i];
+                luong[i] = luong[j];
+                luong[j] = temp;
+            }
+        }
+    }
+    printf("Lương nhân viên theo thứ tự tăng dần: \n");
+    for ( i = 0; i < a; i++) {
+        printf("%.2f \n", luong[i]);
+    }
+    return a;
+}
+
+int main() {
+    int p; 
+    do {
+        printf("----------------MENU---------------------\n");
+        printf("1. Thông tin người yêu. \n");
+        printf("2. Tính tích các số từ 1 đến N. \n");
+        printf("3. Lương nhân viên. \n");
+        printf("4. Thoát. \n");
+        printf("-----------------------------------------\n");
+        printf("Mời bạn nhập chức năng ( 1 -> 4): ");
+        scanf("%d", &p);
+        switch (p) {
+            case 1:
+                printf("Bạn chọn chức năng thông tin người yêu! \n");
+                nguoiYeu();
+                printf("\n");
+            break;
+            case 2:
+                printf("Bạn chọn chức năng tính tích các số từ 1 đến N! \n");
+                int n;
+                do{
+                    printf("Nhập vào 1 số dương N bất kì: ");
+                    scanf("%d", &n);
+                    if ( n < 0){
+                        printf("Số bạn nhập không hợp lệ, vui lòng nhập lại.\n");
+                    }
+                } while ( n < 0);
+                
+                luyThua(n);
+                
+                if ( n % 3 == 0 && n % 2 != 0){
+                    printf("N là số lẻ chia hết cho 3.\n");
+                } else{
+                    printf("N không phải là số lẻ chia hết cho 3.\n");
+                }
+                
+                printf("\n");
+            break;
+            case 3:
+                printf("Bạn chọn chức năng lương nhân viên! \n");
+                int soNhanvien;
+                do{
+                    printf("Nhập vào số lượng nhân viên: ");
+                    scanf("%d", &soNhanvien);
+                    if(soNhanvien < 0){
+                        printf("Số nhân viên không hợp lệ, nhập lại.\n");
+                    }
+                } while (soNhanvien < 0);
+                float tienLuong[100];
+                
+                luongNhanvien(tienLuong, soNhanvien);
+                printf("\n");
+            break;
+            case 4:
+                printf("Bạn đã thoát chương trình, vui lòng ấn phím bất kì để tiếp tục.!");
+            break;
+            default:
+                printf("Chức năng không hợp lệ, vui lòng chọn lại!\n");
+        }
+    } while (p != 4);
+
+    return 0;
+}
+
+
