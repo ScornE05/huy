@@ -1,0 +1,513 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+#define b1 1.678
+#define b2 1.734
+#define b3 2.014
+#define b4 2.536
+#define b5 2.834
+#define b6 2.927
+
+int soXo ( int a, int b){
+	int m, h;
+	m = rand() % 15 + 1;
+	h = rand() % 15 + 1;
+	int dem = 0;
+	if ( a == m ){
+		dem++;
+	} 
+	if ( b == h){
+		dem++;
+	}
+	printf ("Sau day la ket qua so xo.\n");
+	printf("Lan lac dau tien: %d\n", m);
+	printf("Lan lac thu 2: %d\n", h);
+	if ( dem == 2){
+		printf("Chuc mung ban da dat giai nhat.\n ");
+	} else if ( dem == 1){
+		printf("Chuc mung ban dat giai nhi.\n");
+	} else {
+		printf("Chuc ban may man lan sau . \n");
+	}
+	return a;
+}
+
+float kiemTrasonguyen(float x) {
+    float t, dem = 0;
+    if (x == 1) printf("%.2f la khong la so nguyen to.\n", x);
+    if (x == 2) printf("%.2f la so nguyen to.\n", x);
+    t = sqrt(x);
+    if (x >= 3) {
+        float i;
+        for (i = 2; i <= sqrt(x); i++) {
+            if ( fmod(x, i )== 0) {
+                dem += 1;
+                break;
+            }
+        }
+        if (dem == 0) {
+            printf("%.2f la so nguyen to.\n", x);
+        } else {
+            printf("%.2f khong la so nguyen to.\n", x);
+        }
+        if (t * t == x) {
+            printf("%.2f la so chinh phuong.\n", x);
+        } else {
+            printf("%.2f khong la so chinh phuong.\n", x);
+        }
+    }
+    return t;
+}
+
+int timBoiuoc(int x, int y) {
+    int ucln, bcnn, g1, g2;
+    ucln = x;
+    g1 = y;
+    while (g1 != 0) {
+        g2 = ucln % g1;
+        ucln = g1;
+        g1 = g2;
+        bcnn = (x * y) / ucln;
+    }
+    printf("Uoc chung lon nhat cua %d va %d la: %d \n", x, y, ucln);
+    printf("Boi chung nho nhat cua %d va %d la: %d \n", x, y, bcnn);
+
+    return ucln;
+}
+
+float tinhDien(float soDien) {
+    if (soDien < 0) {
+        printf("So dien khong hop le. Vui long nhap lai.\n");
+    } else if (0 <= soDien && soDien <= 50) {
+        printf("So tien can phai dong la: %.3f\n", b1 * soDien);
+    } else if (51 <= soDien && soDien <= 100) {
+        printf("So tien can phai dong la: %.3f\n", b1 * 50 + b2 * (soDien - 50));
+    } else if (101 <= soDien && soDien <= 200) {
+        printf("So tien can phai dong la: %.3f\n", b1 * 50 + 50 * b2 + b3 * (soDien - 100));
+    } else if (201 <= soDien && soDien <= 300) {
+        printf("So tien can phai dong la: %.3f\n", b1 * 50 + 50 * b2 + b3 * 100 + b4 * (soDien - 200));
+    } else if (301 <= soDien && soDien <= 400) {
+        printf("So tien can phai dong la: %.3f\n", b1 * 50 + 50 * b2 + b3 * 100 + b4 * 100 + b5 * (soDien - 300));
+    } else if (soDien >= 401) {
+        printf("So tien can phai dong la: %.3f\n", b1 * 50 + 50 * b2 + b3 * 100 + b4 * 100 + b5 * 100 + b6 * (soDien - 400));
+    } else {
+        printf("Ban nhap so diem ko hop le!\n");
+    }
+    return soDien;
+}
+
+float karaoke(int a, int b){
+	float c =0;
+	int d;
+	d = b - a;
+	if (a >= 14 && b <= 17) {
+	c = d * 150000 * 0.9;
+	} else if (d <= 3) {
+	c = d * 150000;
+	} else {
+	c = (3 * 150000) + (d - 3) * 150000 * 0.7;
+	}
+	if ( a >= 14){
+		c *= 0.9;
+	}
+	printf("So tien hat karaoke la: %.2f \n",c);
+	
+	return c;
+}
+
+int cnDoitien(int i){
+	printf("So tien sau khi doi la: ");
+	while (i !=0 ){
+		if( i > 500){
+			printf("%d ", 500);
+			i -= 500;
+		} else if( i >= 200 ){
+			printf("%d ", 200);
+			i -= 200;
+		} else if( i >= 100){
+			printf("%d ",100);
+			i -= 100;
+		} else if ( i >= 50){
+			printf("%d ", 50);
+			i -= 50;
+		} else if ( i >= 20 ){
+			printf("%d ", 20);
+			i -= 20;
+		} else if ( i >= 10){
+			printf("%d ", 10);
+			i -= 10;
+		} else if ( i >= 5){
+			printf("%d ", 5 );
+			i -= 5;
+		} else if ( i>= 2){
+			printf("%d ", 2);
+			i -= 2;
+		} else {
+			printf("%d ", 1);
+			i -= 1;
+		}
+	}
+		printf("\n");
+	return i;
+}
+
+double vayTien(double x){
+			double a;
+			double b = x / 12 ;
+			double c;
+			double d;
+			d = x;
+			int i;
+			for ( i = 1; i <= 12; i++){
+				a = d * 0.05;
+				c = b + a;
+				d -= b;
+				printf("-----------------------------------------------------------\n");
+				printf("thang thu: %d  | ",i);
+				printf("%10lf | ", a);
+				printf("%10lf | ", b);
+				printf("%10lf | ", c);
+				printf("%10lf | ", d);
+				printf("\n");
+			}		
+	return x;
+}
+
+struct diemSinhvien{
+	char tenSinhvien[50];
+	float diemSinhvien;
+	
+} mangSinhvien[50];
+
+int sapXepsinhvien(int a){
+	int i,j;
+	for ( i = 0; i < a; i++){
+		printf("Nhap vao thong tin cua nguoi thu %d.\n", i+1);
+		printf("Nhap vao ho va ten cua sinh vien thu %d: ", i+1);
+		getchar();
+		gets(mangSinhvien[i].tenSinhvien);
+		do{
+		printf("Nhap vao diem cua sinh vien thu %d: ", i+1);
+		scanf("%f", &mangSinhvien[i].diemSinhvien);
+		if( mangSinhvien[i].diemSinhvien > 10 || mangSinhvien[i].diemSinhvien < 0){
+			printf("Diem nhap vao khong hop le, vui long nhap lai.\n");
+		}
+	} while ( mangSinhvien[i].diemSinhvien > 10 || mangSinhvien[i].diemSinhvien < 0);
+	}
+	printf("\n");
+	   for (i = 0; i < a - 1; i++) {
+        for (j = i + 1; j < a; j++) {
+            if (mangSinhvien[i].diemSinhvien < mangSinhvien[j].diemSinhvien) {
+                struct diemSinhvien temp = mangSinhvien[i];
+                mangSinhvien[i] = mangSinhvien[j];
+                mangSinhvien[j] = temp;
+            }
+        }
+    }
+    printf("Sap xep sinh vien theo chieu giam dan dan cua diem.\n");
+    printf("\n");
+	for (i = 0; i < a ; i++){
+		printf("Thong tin cua sinh vien thu %d \n",i+1);
+		printf("Ten sinh vien  la: %s\n", mangSinhvien[i].tenSinhvien);
+		printf("Diem trung binh cua sinh vien la: %.2f\n", mangSinhvien[i].diemSinhvien);
+		if ( mangSinhvien[i].diemSinhvien >= 9 ){
+			printf("Sinh vien co hoc luc xuat sac.\n");
+		} else if ( mangSinhvien[i].diemSinhvien >= 8){
+			printf("Sinh vien co hoc luc gioi.\n");
+		} else if ( mangSinhvien[i].diemSinhvien >= 6.5){
+			printf("Sinh vien co hoc luc kha.\n");
+		} else if ( mangSinhvien[i].diemSinhvien >= 5){
+			printf("Sinh vien co hoc luc trung binh.\n");
+		} else {
+			printf("Sinh vien co hoc luc yeu.\n");
+		}
+		printf("\n");
+	}    
+	return i;
+}
+
+double tienMuaxe(double x, float y){	
+	double lanDau;
+	lanDau = x * ((100 - y)/100);
+	printf("So tien phai tra truoc la: %lf vnd\n", lanDau);
+	double hangThang, tienVay, hangNam;
+	tienVay = x - lanDau;
+	int i;
+	for ( i = 1; i <= 24; i++){
+		hangNam = tienVay*0.072;
+		printf("So tien phai tra nam thu %d la: %lf vnd\n",i,hangNam);
+		hangThang = hangNam / 12;
+		printf("So tien phai tra hang thang trong nam thu %d la: %lf vnd\n",i,hangThang);
+		printf("\n");
+		tienVay = tienVay - tienVay*0.072;
+	}
+	
+	return x;
+}
+
+float phanSo( float a, float b, float c, float d){
+	
+	float tongTuso, hieuTuso;
+	float MSC;
+	if ( b == d){
+		tongTuso = a + c;
+		hieuTuso = a - c;
+		MSC = b;
+	} else{
+		tongTuso = a*d + c*b;
+		hieuTuso = a*d - c*b;
+		MSC = b*d;
+	}
+	float tichTuso, thuongTuso, tichMauso, thuongMauso;
+	tichTuso = a*c;
+	tichMauso = b*d;
+	int i;
+	float temp = tichTuso;
+	if ( temp < tichMauso){
+		temp = tichMauso;
+	}
+	for( i = 1; i <= temp; i++ ){
+		if( fmod(tichTuso,i) == 0 && fmod(tichMauso,i) == 0){
+			tichTuso = tichTuso / i;
+			tichMauso = tichMauso /i;
+		}  
+}
+	thuongTuso = a*d;
+	thuongMauso = b*c;
+	float temp2 = thuongTuso;
+	if(temp2 < thuongMauso){
+		temp2 = thuongMauso;
+	}
+	for( i = 1; i <=temp2 ; i++ ){
+		if( fmod(thuongTuso,i) == 0 && fmod(thuongMauso,i) == 0){
+			thuongTuso = thuongTuso / i;
+			thuongMauso = thuongMauso /i;
+		}  
+}	
+	if( fmod(tongTuso,MSC) != 0 ){
+	printf("Tong cua 2 phan so la: %.0f/%.0f\n", tongTuso, MSC);
+}   else{
+	printf("Tong cua 2 phan so la: %0.f\n", tongTuso/MSC);
+}
+	if( fmod(hieuTuso,MSC) != 0){
+	printf("Hieu cua 2 phan so la: %.0f/%.0f\n", hieuTuso, MSC);
+}   else{
+	printf("Hieu cua 2 phan so la: %0.f\n", hieuTuso/MSC);
+}
+	if( fmod(tichTuso,tichMauso) != 0){
+	printf("Tich cua 2 phan so la: %.0f/%0.f\n", tichTuso,tichMauso);
+}	else{
+	printf("Tich cua 2 phan so la: %.0f\n",tichTuso/tichMauso);
+}
+	if( fmod(thuongTuso,thuongMauso) != 0){
+	printf("Thuong cua 2 phan so la: %.0f/%0.f\n", thuongTuso,thuongMauso);
+}	else{
+	printf("Thuong cua 2 phan so la: %.0f\n",thuongTuso/thuongMauso);
+}
+	return a;
+}
+
+int main() {
+    int a;
+    do {
+        printf("--------------------------------------------------------\n");
+        printf("| Chon chuc nang!                                      |\n");
+        printf("| Chuc nang 1: Kiem tra so nguyen.                     |\n");
+        printf("| Chuc nang 2: Tim uoc chung va boi chung cua 2 so.    |\n");
+        printf("| Chuc nang 3: Tinh tien quan karaoke.                 |\n");
+        printf("| Chuc nang 4: Tinh tien dien.                         |\n");
+        printf("| Chuc nang 5: Doi tien.                               |\n");
+        printf("| Chuc nang 6: Tinh lai suat ngan hang vay tra gop.    |\n");
+        printf("| Chuc nang 7: Vay tien mua xe.                        |\n");
+        printf("| Chuc nang 8: Sap xep thong tin sinh vien.            |\n");
+        printf("| Chuc nang 9: Game FPOLY-LOTT.                        |\n");
+        printf("| Chuc nang 10: Tinh toan phan so.                     |\n");
+        printf("| Chuc nang 11: Thoat                                  |\n");
+        printf("--------------------------------------------------------\n");
+        printf("Moi ban chon chuc nang: ");
+        scanf("%d", &a);
+        switch (a) {
+            case 1:
+
+                printf("Kiem tra so nguyen.\n");
+                float soNguyen;
+                do {
+                    printf("Nhap vao so x : ");
+                    scanf("%f", &soNguyen);
+                    if (soNguyen < 0 ) {
+                        printf("%.2f la so am, khong phai so nguyen to.\nKhong phai so chinh phuong.\nVui long nhap lai so x >= 0.\n",soNguyen);
+                    }
+                    if ( (int)soNguyen != soNguyen){
+                    	printf("%.2f Khong phai so nguyen, vui long nhap lai.\n",soNguyen);
+					}
+                } while ( (int)soNguyen != soNguyen || soNguyen < 0);
+                if ( (int)soNguyen == soNguyen ){
+                	printf("%.2f la so nguyen.\n",soNguyen);
+                if ( soNguyen == 0){
+                	printf("0 khong la so nguyen to.\n0 khong phai so chinh phuong.\n");
+				}
+                kiemTrasonguyen(soNguyen);
+            } 
+            
+                break;
+            case 2:
+            	
+                printf("Tim UCLN va BCNN cua 2 so. \n");
+                int soThunhat, soThuhai;
+                printf("Nhap vao so thu nhat: ");
+                scanf("%d", &soThunhat);
+                printf("Nhap vao so thu hai: ");
+                scanf("%d", &soThuhai);
+                timBoiuoc(soThunhat, soThuhai);
+                
+                break;
+            case 3:
+                printf("Tinh tien quan karaoke. \n");
+                int batDau, ketThuc;
+                do{
+                	printf("Nhap vao gio bat dau: ");
+                	scanf("%d",&batDau);
+                	if(batDau < 12 || batDau > 23){
+                		printf("Gio nhap vao khong hop le, vui long nhap lai!\n");
+					}
+				} while ( batDau < 12 || batDau > 23);
+				do{
+                	printf("Nhap vao gio ket thuc: ");
+                	scanf("%d",&ketThuc);
+                	if(ketThuc < batDau || ketThuc > 23){
+                		printf("Gio nhap vao khong hop le, vui long nhap lai!\n");
+					}
+				} while ( ketThuc < batDau || ketThuc > 23);
+				karaoke(batDau, ketThuc);
+                break;
+            case 4:
+                printf("Tinh tien dien. \n");
+                float soDien;
+                do {
+                    printf("Nhap vao so dien da dung trong thang nay: ");
+                    scanf("%f", &soDien);
+                    if (soDien < 0) {
+                        printf("Nhap lai so dien > 0.\n");
+                    }
+                } while (soDien < 0);
+                tinhDien(soDien);
+                break;
+            case 5:
+                printf("Doi tien. \n");
+                int doiTien;
+                do{
+                printf("Nhap vao so tien muon doi: ");
+                scanf("%d", &doiTien);
+            	if(doiTien < 0){
+                printf("So tien muon doi khong hop le vui long nhap lai.\n");
+            }
+            } while ( doiTien < 0);
+                cnDoitien(doiTien);
+                break;
+            case 6:
+                printf("Tinh lai suat vay tra gop ngan hang. \n");
+                    double soTienVay;
+				do{
+				    printf("Nhap vao so tien muon vay: ");
+				    scanf("%lf", &soTienVay);
+				    if(soTienVay < 0 ){
+				    	printf("Ban vay so tien khong hop le, vay lai.\n");
+					}
+			} while (soTienVay < 0);
+			        vayTien(soTienVay);
+                break;
+            case 7:
+                printf("Vay tien mua xe.\n");
+                double tienXe;
+                do{
+                printf("Nhap vao tien cua xe: ");
+                scanf("%lf", &tienXe);
+                if ( tienXe < 0 ){
+                	printf("Tien xe khong hop le, vui long nhap lai.\n");
+				}
+            } 	while ( tienXe < 0);
+            	float phanTram;
+            	double tienVay;
+            	do{
+            		printf("Nhap vao so phan tram muon vay: ");
+            		scanf("%f", &phanTram);
+            		if(phanTram < 0 || phanTram > 100){
+            			printf("Phan tram vay khong hop le, nhap lai.\n");
+					} else{
+						printf("Ban vay %.2f %%\n",phanTram);
+					}
+				tienVay = tienXe * (phanTram / 100);	
+            	if ( tienVay > 500000000 ){
+            		printf("Tien vay vuot han muc quy dinh, vui long chon xe re hon :) .\n");
+				} else{
+					printf("Ban vay so tien la: %lf vnd\n", tienVay);
+					tienMuaxe(tienXe, phanTram);
+				}					
+				} while ( phanTram < 0 || tienVay > 500000000 || phanTram > 100);     
+                break;
+            case 8:
+                printf("Sap xep thong tin sinh vien. \n");
+                int soSinhvien;
+                do{
+                	printf("Nhap vao so sinh vien: ");
+                	scanf("%d", &soSinhvien);
+                	if (soSinhvien < 0){
+                		printf("So sinh vien khong hop le! Nhap lai.\n");
+					}
+				} while (soSinhvien < 0);
+				sapXepsinhvien(soSinhvien);
+                break;
+            case 9:
+                printf("Game FPOLY-LOTT\n");
+                int s1, s2;
+            	do{
+                printf("Nhap vao so thu nhat ( 1 - 15 ):  ");
+                scanf("%d", &s1);
+                if(s1 > 15 || s1 < 1){
+                	printf("So nhap vao khong hop le, vui long nhap lai.\n");
+				}
+            } while ( s1 < 1 || s1 > 15);
+            printf("\n");
+            	do{
+                printf("Nhap vao so thu hai ( 1 - 15 ):  ");
+                scanf("%d", &s2);
+                if(s2 > 15 || s2 < 1){
+                	printf("So nhap vao khong hop le, vui long nhap lai.\n");
+				}
+            } while ( s2 < 1 || s2 > 15); 
+			soXo(s1, s2);           
+                break;
+            case 10:
+                printf("Tinh toan phan so. \n");
+                float tuSo1, tuSo2, mauSo1, mauSo2;
+                printf("Nhap vao tu so cua phan so thu nhat thu nhat: ");
+                scanf("%f", &tuSo1);
+                do{
+                	printf("Nhap vao mau so cua pha so thu nhat: ");
+                	scanf("%f", &mauSo1);
+                	if(mauSo1 == 0){
+                		printf("Mau so khong hop le, nhap lai.\n");
+					}
+				}while (mauSo1 == 0);
+				printf("Nhap vao tu so cua phan so thu 2: ");
+				scanf("%f", &tuSo2);
+                do{
+                	printf("Nhap vao mau so cua pha so thu 2: ");
+                	scanf("%f", &mauSo2);
+                	if(mauSo2 == 0){
+                		printf("Mau so khong hop le, nhap lai.\n");
+					}
+				}while (mauSo2 == 0);
+				phanSo(tuSo1,mauSo1,tuSo2,mauSo2);				
+                break;
+            case 11:
+                printf("Ban da thoat khoi chuong trinh.\n");
+                break;
+            default:
+                printf("Moi ban nhap lai chuc nang.\n");
+        }
+    } while (a != 11);
+    return 0;
+}
